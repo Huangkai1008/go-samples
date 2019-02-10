@@ -12,5 +12,5 @@ var (
 
 func main() {
 	leftHp := float32(hp) - damage
-	fmt.Println("leftHp is %f\n", leftHp)
+	fmt.Printf("leftHp is %f\n", leftHp)
 }
