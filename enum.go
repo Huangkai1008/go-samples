@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	type Weapon = int
+	type Weapon int
 
 	const (
 		Arrow Weapon = iota
