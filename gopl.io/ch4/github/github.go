@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"sort"
 	"strings"
 	"time"
 )
@@ -54,4 +55,11 @@ func SearchIssues(terms []string) (*IssuesSearchResult, error) {
 		return nil, err
 	}
 	return &result, nil
+}
+
+// SortResult 函数按照Issue的CreateAt属性排序
+func SortResult(result *IssuesSearchResult) {
+	sort.Slice(result.Items, func(i, j int) bool {
+		return result.Items[i].CreatedAt.Before(result.Items[j].CreatedAt)
+	})
 }
