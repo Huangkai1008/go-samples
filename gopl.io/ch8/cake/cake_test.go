@@ -1,16 +1,17 @@
 package cake_test
 
 import (
-	"gopl.io/ch8/cake"
 	"testing"
 	"time"
+
+	"go-starter/gopl.io/ch8/cake"
 )
 
 var defaults = cake.Shop{
 	Verbose:      testing.Verbose(),
 	Cakes:        20,
 	BakeTime:     10 * time.Millisecond,
-	NumIcers:     1,
+	IceCookNum:   1,
 	IceTime:      10 * time.Millisecond,
 	InscribeTime: 10 * time.Millisecond,
 }
@@ -54,6 +55,6 @@ func BenchmarkSlowIcing(b *testing.B) {
 func BenchmarkSlowIcingManyIcers(b *testing.B) {
 	cakeShop := defaults
 	cakeShop.IceTime = 50 * time.Millisecond
-	cakeShop.NumIcers = 5
+	cakeShop.IceCookNum = 5
 	cakeShop.Work(b.N)
 }
