@@ -33,7 +33,7 @@ func (memo *Memo) Get(key string) (value interface{}, err error) {
 		res.value, res.err = memo.f(key)
 		memo.mu.Lock()
 		memo.cache[key] = res
-		memo.mu.Lock()
+		memo.mu.Unlock()
 	}
 	return res.value, res.err
 }
