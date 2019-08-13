@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@192.168.10.40:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
@@ -16,28 +16,28 @@ func main() {
 	failOnError(err, "Failed to open a channel")
 	defer ch.Close()
 
-	q, err := ch.QueueDeclare(
-		"task_queue",
+	err = ch.ExchangeDeclare(
+		"logs",
+		"fanout",
 		true,
 		false,
 		false,
 		false,
 		nil,
 	)
-	failOnError(err, "Failed to declare a queue")
+	failOnError(err, "Failed to declare an exchange")
 
 	body := bodyForm(os.Args)
 	err = ch.Publish(
+		"logs",
 		"",
-		q.Name,
 		false,
 		false,
 		amqp.Publishing{
-			DeliveryMode: amqp.Persistent,
-			ContentType:  "text/plain",
-			Body:         []byte(body),
-		},
-	)
-	failOnError(err, "Failed to publishing a message")
+			ContentType: "text/plain",
+			Body:        []byte(body),
+		})
+	failOnError(err, "Failed to publish a message")
+
 	log.Printf(" [x] Sent %s", body)
 }
