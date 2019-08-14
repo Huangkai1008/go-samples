@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -19,5 +20,16 @@ func bodyForm(args []string) string {
 	} else {
 		s = strings.Join(args[1:], " ")
 	}
+	return s
+}
+
+func severityFrom(args []string) string {
+	var s string
+	if len(args) < 3 || os.Args[2] == "" {
+		s = "info"
+	} else {
+		s = os.Args[1]
+	}
+	fmt.Println(s)
 	return s
 }
