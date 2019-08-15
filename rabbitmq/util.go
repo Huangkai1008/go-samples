@@ -33,3 +33,13 @@ func severityFrom(args []string) string {
 	fmt.Println(s)
 	return s
 }
+
+func severityFromTopic(args []string) string {
+	var s string
+	if len(args) < 2 || os.Args[1] == "" {
+		s = "anonymous.info"
+	} else {
+		s = os.Args[1]
+	}
+	return s
+}
