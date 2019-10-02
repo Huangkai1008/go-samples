@@ -88,3 +88,8 @@ func (c *Context) HTML(code int, html string) {
 		http.Error(c.Writer, err.Error(), 500)
 	}
 }
+
+func (c *Context) Param(key string) string {
+	value, _ := c.Params[key]
+	return value
+}
