@@ -14,8 +14,9 @@ type Context struct {
 	Req    *http.Request
 
 	// request message
-	Path   string // request url path
-	Method string // request method
+	Path   string            // request url path
+	Method string            // request method
+	Params map[string]string // request params
 
 	// response message
 	StatusCode int // response status code
