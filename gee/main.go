@@ -8,6 +8,7 @@ import (
 
 func main() {
 	r := gee.New()
+	r.Use(gee.Logger())
 	v1 := r.Group("/v1")
 	{
 		v1.Get("/", func(c *gee.Context) {

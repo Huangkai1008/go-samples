@@ -21,12 +21,6 @@ func (group *RouterGroup) Group(prefix string) *RouterGroup {
 	return newGroup
 }
 
-func (group *RouterGroup) addRoute(method string, comp string, handler HandlerFunc) {
-	pattern := group.prefix + comp
-	log.Printf("Route %4s - %s", method, pattern)
-	group.engine.router.addRoute(method, pattern, handler)
-}
-
 // Get defines the method to add GET request
 func (group *RouterGroup) Get(pattern string, handler HandlerFunc) {
 	group.addRoute("GET", pattern, handler)
@@ -35,4 +29,15 @@ func (group *RouterGroup) Get(pattern string, handler HandlerFunc) {
 // Post defines the method to add POST request
 func (group *RouterGroup) Post(pattern string, handler HandlerFunc) {
 	group.addRoute("POST", pattern, handler)
+}
+
+// Use defined to add middleware to the group
+func (group *RouterGroup) Use(middlewares ...HandlerFunc) {
+	group.middlewares = append(group.middlewares, middlewares...)
+}
+
+func (group *RouterGroup) addRoute(method string, comp string, handler HandlerFunc) {
+	pattern := group.prefix + comp
+	log.Printf("Route %4s - %s", method, pattern)
+	group.engine.router.addRoute(method, pattern, handler)
 }
