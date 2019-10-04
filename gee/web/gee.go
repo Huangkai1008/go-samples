@@ -9,12 +9,17 @@ type HandlerFunc func(*Context)
 
 // Engine implement the interface of ServeHTTP
 type Engine struct {
+	*RouterGroup
 	router *router
+	groups []*RouterGroup
 }
 
 // New construct new Engine
 func New() *Engine {
-	return &Engine{router: newRouter()}
+	engine := &Engine{router: newRouter()}
+	engine.RouterGroup = &RouterGroup{engine: engine}
+	engine.groups = []*RouterGroup{engine.RouterGroup}
+	return engine
 }
 
 // addRoute add route to the router
