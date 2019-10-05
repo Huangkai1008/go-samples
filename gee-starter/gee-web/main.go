@@ -1,7 +1,7 @@
 package main
 
 import (
-	gee "go-starter/gee/web"
+	"go-starter/gee-starter/gee-web/gee"
 	"log"
 	"net/http"
 )
