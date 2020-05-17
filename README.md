@@ -1,2 +1,2 @@
-# go_tour
-go tour
+# go-starter
+go starter
