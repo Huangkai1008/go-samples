@@ -1,8 +1,9 @@
-package ch1_hello
+package helloworld
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestHello(t *testing.T) {

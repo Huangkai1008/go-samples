@@ -1,4 +1,4 @@
-package ch1_hello
+package helloworld
 
 const (
 	french  = "French"
