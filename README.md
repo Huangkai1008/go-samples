@@ -1,12 +1,12 @@
-# Go Starter
-go starter project
+# Go Samples
+go samples project
 
 ## Table of Contents
 - [Requirements](#Requirements)
 - [Chapters](#Chapters)
 
 ## Requirements
-go 1.12
+go 1.12+
 
 ## Chapters
 
