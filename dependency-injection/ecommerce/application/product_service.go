@@ -3,7 +3,7 @@ package application
 import "go-samples/dependency-injection/ecommerce/domain"
 
 type IProductService interface {
-	GetFeaturedProducts() []*domain.DiscountedProduct
+	GetFeaturedProducts() ([]*domain.DiscountedProduct, error)
 }
 
 type ProductService struct {
@@ -11,10 +11,15 @@ type ProductService struct {
 	userContext domain.UserContext
 }
 
-func (s *ProductService) GetFeaturedProducts() []*domain.DiscountedProduct {
+func (s *ProductService) GetFeaturedProducts() ([]*domain.DiscountedProduct, error) {
 	var discountProducts []*domain.DiscountedProduct
-	for _, p := range s.repository.GetFeaturedProducts() {
+	featuredProducts, err := s.repository.GetFeaturedProducts()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, p := range featuredProducts {
 		discountProducts = append(discountProducts, p.ApplyDiscountFor(s.userContext))
 	}
-	return discountProducts
+	return discountProducts, nil
 }

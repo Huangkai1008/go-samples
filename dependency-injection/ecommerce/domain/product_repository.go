@@ -1,5 +1,5 @@
 package domain
 
 type ProductRepository interface {
-	GetFeaturedProducts() []*Product
+	GetFeaturedProducts() ([]*Product, error)
 }
