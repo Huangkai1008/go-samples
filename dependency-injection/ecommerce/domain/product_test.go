@@ -14,7 +14,7 @@ func TestProduct(t *testing.T) {
 
 		discount := product.ApplyDiscountFor(&StubUserContext{})
 
-		assert.Equal(t, expectedUnitPrice, discount.unitPrice)
+		assert.Equal(t, expectedUnitPrice, discount.UnitPrice)
 	})
 
 	t.Run("not apply discount when user is not preferred customer", func(t *testing.T) {
@@ -25,6 +25,6 @@ func TestProduct(t *testing.T) {
 
 		discount := product.ApplyDiscountFor(preferredCustomer)
 
-		assert.Equal(t, expectedUnitPrice, discount.unitPrice)
+		assert.Equal(t, expectedUnitPrice, discount.UnitPrice)
 	})
 }

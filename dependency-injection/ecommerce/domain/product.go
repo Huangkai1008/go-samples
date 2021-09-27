@@ -12,12 +12,12 @@ func (p *Product) ApplyDiscountFor(user UserContext) *DiscountedProduct {
 		discount = 0.95
 	}
 	return &DiscountedProduct{
-		name:      p.Name,
-		unitPrice: p.UnitPrice * discount,
+		Name:      p.Name,
+		UnitPrice: p.UnitPrice * discount,
 	}
 }
 
 type DiscountedProduct struct {
-	name      string
-	unitPrice float64
+	Name      string
+	UnitPrice float64
 }
